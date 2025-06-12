@@ -1,0 +1,6 @@
+oandapyV20
+pandas
+numpy
+ta-lib
+scikit-learn
+requests
