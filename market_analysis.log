@@ -2652,3 +2652,154 @@
 2025-06-12 12:24:12,166 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_NZD/candles
 2025-06-12 12:24:13,754 - [D] EUR_NZD -> Strat: Sell Strategy (50.0% conf)
 2025-06-12 12:24:13,755 - performing request https://api-fxpractice.oanda.com/v3/instruments/GBP_AUD/candles
+2025-06-12 13:10:29,265 - performing request https://api-fxpractice.oanda.com/v3/accounts/YOUR_OANDA_ACCOUNT_ID/pricing
+2025-06-12 13:10:29,607 - request https://api-fxpractice.oanda.com/v3/accounts/YOUR_OANDA_ACCOUNT_ID/pricing failed [400,{"errorMessage":"Invalid value specified for 'accountID'"}]
+2025-06-12 13:10:29,607 - Error fetching real-time prices: {"errorMessage":"Invalid value specified for 'accountID'"}
+2025-06-12 13:10:29,608 - Missing price for EUR_USD
+2025-06-12 13:10:29,608 - Missing price for GBP_USD
+2025-06-12 13:10:29,608 - Missing price for USD_JPY
+2025-06-12 13:10:29,608 - Missing price for AUD_USD
+2025-06-12 13:10:29,608 - Missing price for USD_CAD
+2025-06-12 13:10:29,608 - Missing price for USD_CHF
+2025-06-12 13:10:29,608 - Missing price for NZD_USD
+2025-06-12 13:10:29,608 - Missing price for EUR_GBP
+2025-06-12 13:10:29,608 - Missing price for EUR_JPY
+2025-06-12 13:10:29,608 - Missing price for GBP_JPY
+2025-06-12 13:10:29,608 - Missing price for AUD_JPY
+2025-06-12 13:10:29,608 - Missing price for EUR_AUD
+2025-06-12 13:10:29,608 - Missing price for EUR_CAD
+2025-06-12 13:10:29,608 - Missing price for AUD_CAD
+2025-06-12 13:10:29,609 - Missing price for GBP_CAD
+2025-06-12 13:10:29,609 - Missing price for NZD_JPY
+2025-06-12 13:10:29,609 - Missing price for USD_SGD
+2025-06-12 13:10:29,609 - Missing price for USD_HKD
+2025-06-12 13:10:29,609 - Missing price for USD_MXN
+2025-06-12 13:10:29,609 - Missing price for USD_ZAR
+2025-06-12 13:10:29,609 - Missing price for USD_NOK
+2025-06-12 13:10:29,609 - Missing price for USD_SEK
+2025-06-12 13:10:29,609 - Missing price for EUR_NOK
+2025-06-12 13:10:29,609 - Missing price for EUR_SEK
+2025-06-12 13:10:29,609 - Missing price for EUR_NZD
+2025-06-12 13:10:29,609 - Missing price for GBP_AUD
+2025-06-12 13:10:29,609 - Missing price for GBP_NZD
+2025-06-12 13:10:29,609 - Missing price for GBP_CHF
+2025-06-12 13:10:29,609 - Missing price for NZD_CAD
+2025-06-12 13:10:29,609 - Missing price for NZD_CHF
+2025-06-12 13:10:29,609 - Missing price for EUR_CHF
+2025-06-12 13:10:29,609 - Missing price for AUD_NZD
+2025-06-12 13:23:06,913 - performing request https://api-fxpractice.oanda.com/v3/accounts/your_account_id/pricing
+2025-06-12 13:23:07,093 - request https://api-fxpractice.oanda.com/v3/accounts/your_account_id/pricing failed [400,{"errorMessage":"Invalid value specified for 'accountID'"}]
+2025-06-12 13:23:07,093 - Error fetching real-time prices: {"errorMessage":"Invalid value specified for 'accountID'"}
+2025-06-12 13:23:07,093 - Missing price for EUR_USD
+2025-06-12 13:23:07,093 - Missing price for GBP_USD
+2025-06-12 13:23:07,093 - Missing price for USD_JPY
+2025-06-12 13:23:07,093 - Missing price for AUD_USD
+2025-06-12 13:23:07,093 - Missing price for USD_CAD
+2025-06-12 13:23:07,093 - Missing price for USD_CHF
+2025-06-12 13:23:07,093 - Missing price for NZD_USD
+2025-06-12 13:23:07,093 - Missing price for EUR_GBP
+2025-06-12 13:23:07,093 - Missing price for EUR_JPY
+2025-06-12 13:23:07,094 - Missing price for GBP_JPY
+2025-06-12 13:23:07,094 - Missing price for AUD_JPY
+2025-06-12 13:23:07,094 - Missing price for EUR_AUD
+2025-06-12 13:23:07,094 - Missing price for EUR_CAD
+2025-06-12 13:23:07,094 - Missing price for AUD_CAD
+2025-06-12 13:23:07,094 - Missing price for GBP_CAD
+2025-06-12 13:23:07,094 - Missing price for NZD_JPY
+2025-06-12 13:23:07,094 - Missing price for USD_SGD
+2025-06-12 13:23:07,094 - Missing price for USD_HKD
+2025-06-12 13:23:07,094 - Missing price for USD_MXN
+2025-06-12 13:23:07,095 - Missing price for USD_ZAR
+2025-06-12 13:23:07,095 - Missing price for USD_NOK
+2025-06-12 13:23:07,095 - Missing price for USD_SEK
+2025-06-12 13:23:07,095 - Missing price for EUR_NOK
+2025-06-12 13:23:07,095 - Missing price for EUR_SEK
+2025-06-12 13:23:07,095 - Missing price for EUR_NZD
+2025-06-12 13:23:07,095 - Missing price for GBP_AUD
+2025-06-12 13:23:07,095 - Missing price for GBP_NZD
+2025-06-12 13:23:07,095 - Missing price for GBP_CHF
+2025-06-12 13:23:07,095 - Missing price for NZD_CAD
+2025-06-12 13:23:07,095 - Missing price for NZD_CHF
+2025-06-12 13:23:07,095 - Missing price for EUR_CHF
+2025-06-12 13:23:07,095 - Missing price for AUD_NZD
+2025-06-12 13:24:07,137 - performing request https://api-fxpractice.oanda.com/v3/accounts/your_account_id/pricing
+2025-06-12 13:24:07,375 - request https://api-fxpractice.oanda.com/v3/accounts/your_account_id/pricing failed [400,{"errorMessage":"Invalid value specified for 'accountID'"}]
+2025-06-12 13:24:07,376 - Error fetching real-time prices: {"errorMessage":"Invalid value specified for 'accountID'"}
+2025-06-12 13:24:07,376 - Missing price for EUR_USD
+2025-06-12 13:24:07,376 - Missing price for GBP_USD
+2025-06-12 13:24:07,376 - Missing price for USD_JPY
+2025-06-12 13:24:07,376 - Missing price for AUD_USD
+2025-06-12 13:24:07,376 - Missing price for USD_CAD
+2025-06-12 13:24:07,376 - Missing price for USD_CHF
+2025-06-12 13:24:07,376 - Missing price for NZD_USD
+2025-06-12 13:24:07,376 - Missing price for EUR_GBP
+2025-06-12 13:24:07,376 - Missing price for EUR_JPY
+2025-06-12 13:24:07,376 - Missing price for GBP_JPY
+2025-06-12 13:24:07,376 - Missing price for AUD_JPY
+2025-06-12 13:24:07,376 - Missing price for EUR_AUD
+2025-06-12 13:24:07,376 - Missing price for EUR_CAD
+2025-06-12 13:24:07,376 - Missing price for AUD_CAD
+2025-06-12 13:24:07,376 - Missing price for GBP_CAD
+2025-06-12 13:24:07,376 - Missing price for NZD_JPY
+2025-06-12 13:24:07,376 - Missing price for USD_SGD
+2025-06-12 13:24:07,377 - Missing price for USD_HKD
+2025-06-12 13:24:07,377 - Missing price for USD_MXN
+2025-06-12 13:24:07,377 - Missing price for USD_ZAR
+2025-06-12 13:24:07,377 - Missing price for USD_NOK
+2025-06-12 13:24:07,377 - Missing price for USD_SEK
+2025-06-12 13:24:07,377 - Missing price for EUR_NOK
+2025-06-12 13:24:07,377 - Missing price for EUR_SEK
+2025-06-12 13:24:07,377 - Missing price for EUR_NZD
+2025-06-12 13:24:07,377 - Missing price for GBP_AUD
+2025-06-12 13:24:07,377 - Missing price for GBP_NZD
+2025-06-12 13:24:07,377 - Missing price for GBP_CHF
+2025-06-12 13:24:07,377 - Missing price for NZD_CAD
+2025-06-12 13:24:07,377 - Missing price for NZD_CHF
+2025-06-12 13:24:07,377 - Missing price for EUR_CHF
+2025-06-12 13:24:07,377 - Missing price for AUD_NZD
+2025-06-12 13:26:18,856 - performing request https://api-fxpractice.oanda.com/v3/accounts/101-004-1683826-005/pricing
+2025-06-12 13:26:19,051 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles
+2025-06-12 13:26:20,581 - [M30] EUR_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:20,581 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles
+2025-06-12 13:26:22,406 - [H1] EUR_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:22,407 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_USD/candles
+2025-06-12 13:26:24,411 - [D] EUR_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:24,411 - performing request https://api-fxpractice.oanda.com/v3/instruments/GBP_USD/candles
+2025-06-12 13:26:25,629 - [M30] GBP_USD -> Strat: Buy Strategy (75.0% conf)
+2025-06-12 13:26:25,629 - performing request https://api-fxpractice.oanda.com/v3/instruments/GBP_USD/candles
+2025-06-12 13:26:26,814 - [H1] GBP_USD -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:26,815 - performing request https://api-fxpractice.oanda.com/v3/instruments/GBP_USD/candles
+2025-06-12 13:26:28,268 - [D] GBP_USD -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:28,269 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_JPY/candles
+2025-06-12 13:26:29,453 - [M30] USD_JPY -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:29,454 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_JPY/candles
+2025-06-12 13:26:31,090 - [H1] USD_JPY -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:31,090 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_JPY/candles
+2025-06-12 13:26:32,745 - [D] USD_JPY -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:32,746 - performing request https://api-fxpractice.oanda.com/v3/instruments/AUD_USD/candles
+2025-06-12 13:26:34,135 - [M30] AUD_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:34,135 - performing request https://api-fxpractice.oanda.com/v3/instruments/AUD_USD/candles
+2025-06-12 13:26:35,519 - [H1] AUD_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:35,519 - performing request https://api-fxpractice.oanda.com/v3/instruments/AUD_USD/candles
+2025-06-12 13:26:36,971 - [D] AUD_USD -> Strat: Buy Strategy (75.0% conf)
+2025-06-12 13:26:36,971 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CAD/candles
+2025-06-12 13:26:38,341 - [M30] USD_CAD -> Strat: Buy Strategy (50.0% conf)
+2025-06-12 13:26:38,341 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CAD/candles
+2025-06-12 13:26:40,004 - [H1] USD_CAD -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:40,004 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CAD/candles
+2025-06-12 13:26:41,254 - [D] USD_CAD -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:41,255 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CHF/candles
+2025-06-12 13:26:42,465 - [M30] USD_CHF -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:42,465 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CHF/candles
+2025-06-12 13:26:43,692 - [H1] USD_CHF -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:43,692 - performing request https://api-fxpractice.oanda.com/v3/instruments/USD_CHF/candles
+2025-06-12 13:26:45,323 - [D] USD_CHF -> Strat: Sell Strategy (75.0% conf)
+2025-06-12 13:26:45,323 - performing request https://api-fxpractice.oanda.com/v3/instruments/NZD_USD/candles
+2025-06-12 13:26:46,682 - [M30] NZD_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:46,682 - performing request https://api-fxpractice.oanda.com/v3/instruments/NZD_USD/candles
+2025-06-12 13:26:48,169 - [H1] NZD_USD -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:48,170 - performing request https://api-fxpractice.oanda.com/v3/instruments/NZD_USD/candles
+2025-06-12 13:26:50,284 - [D] NZD_USD -> Strat: Buy Strategy (75.0% conf)
+2025-06-12 13:26:50,284 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_GBP/candles
+2025-06-12 13:26:51,745 - [M30] EUR_GBP -> Strat: Sell Strategy (50.0% conf)
+2025-06-12 13:26:51,746 - performing request https://api-fxpractice.oanda.com/v3/instruments/EUR_GBP/candles
