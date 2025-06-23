@@ -12,8 +12,8 @@ required_packages = [
     "requests"
 ]
 
-if not os.path.exists("requirements.txt"):
-    with open("requirements.txt", "w") as f:
+if not os.path.exists("../requirements.txt"):
+    with open("../requirements.txt", "w") as f:
         f.write("\n".join(required_packages))
     print("✅ requirements.txt created successfully.")
 
@@ -50,10 +50,20 @@ OANDA_INSTRUMENTS = [
 client = oandapyV20.API(access_token=OANDA_API_KEY)
 
 # Logging setup
-logging.basicConfig(filename='market_analysis.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename='../market_analysis.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 
 def fetch_real_time_prices():
+    """
+    Fetch real-time bid and ask prices for all configured instruments.
+    
+    This function retrieves current market prices from the OANDA API
+    for all instruments in the OANDA_INSTRUMENTS list.
+    
+    Returns:
+        dict: Dictionary mapping instrument symbols to (bid_price, ask_price) tuples,
+              or empty dict if API call fails
+    """
     try:
         params = {"instruments": ",".join(OANDA_INSTRUMENTS)}
         r = pricing.PricingInfo(accountID=OANDA_ACCOUNT_ID, params=params)
@@ -66,6 +76,19 @@ def fetch_real_time_prices():
 
 
 def fetch_historical_data(instrument):
+    """
+    Fetch historical OHLC data for a specific instrument.
+    
+    This function retrieves 500 candlestick records with 30-minute granularity
+    from the OANDA API for the specified instrument.
+    
+    Args:
+        instrument (str): The trading instrument symbol (e.g., 'EUR_USD')
+        
+    Returns:
+        pandas.DataFrame: DataFrame with columns ['Open', 'High', 'Low', 'Close'],
+                         or empty DataFrame if API call fails
+    """
     try:
         params = {"count": 500, "granularity": "M30"}
         r = instruments.InstrumentsCandles(instrument=instrument, params=params)
@@ -83,6 +106,18 @@ def fetch_historical_data(instrument):
 
 
 def compute_indicators(df):
+    """
+    Compute technical indicators for the given price data.
+    
+    This function calculates various technical indicators including RSI, ADX,
+    MACD, EMAs, and ATR. It handles missing data by forward and backward filling.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with OHLC price data
+        
+    Returns:
+        pandas.DataFrame: DataFrame with original data plus computed indicators
+    """
     if df.empty:
         return df
     df['RSI'] = ta.RSI(df['Close'], timeperiod=14)
@@ -98,6 +133,18 @@ def compute_indicators(df):
 
 
 def evaluate_feature_combinations(df):
+    """
+    Evaluate different combinations of technical indicators for price prediction.
+    
+    This function tests various combinations of technical indicators to find
+    the best feature set for price prediction using linear regression.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and technical indicators
+        
+    Returns:
+        tuple: (best_feature_combination, best_metrics_dict)
+    """
     available_features = ["RSI", "ADX", "MACD", "MACD_Signal", "EMA_20", "EMA_50", "EMA_200", "ATR"]
     df = df.dropna(subset=available_features + ['Close'])
 
@@ -131,6 +178,19 @@ def evaluate_feature_combinations(df):
 
 
 def predict_price_with_best_features(df, features):
+    """
+    Predict price using the best feature combination.
+    
+    This function uses linear regression with the best feature combination
+    to predict the next price value.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and indicators
+        features (list): List of feature names to use for prediction
+        
+    Returns:
+        float: Predicted price for the next period
+    """
     features = list(features)  # Ensure it's a list, not a tuple
     X = df[features].dropna()  # Use the features list to get the correct columns
     y = df['Close'].loc[X.index]  # Target variable
@@ -146,18 +206,54 @@ def predict_price_with_best_features(df, features):
 
 
 def detect_anomalies(df):
+    """
+    Detect price anomalies based on ATR volatility.
+    
+    This function identifies anomalous price movements by comparing
+    the current ATR to its 20-period rolling mean.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and ATR indicator
+        
+    Returns:
+        str: "Anomaly Detected" or "No Anomalies Detected"
+    """
     if df['ATR'].iloc[-1] > df['ATR'].rolling(20).mean().iloc[-1] * 2:
         return "Anomaly Detected"
     return "No Anomalies Detected"
 
 
 def detect_trend_signal(df):
+    """
+    Detect trend strength using ADX indicator.
+    
+    This function determines if the market is trending strongly
+    based on the ADX (Average Directional Index) value.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and ADX indicator
+        
+    Returns:
+        str: "Strong Trend" if ADX > 25, otherwise "Weak Trend (ADX Below 25)"
+    """
     if df['ADX'].iloc[-1] > 25:
         return "Strong Trend"
     return "Weak Trend (ADX Below 25)"
 
 
 def detect_momentum_signal(df):
+    """
+    Detect momentum direction using MACD indicator.
+    
+    This function determines the momentum direction by comparing
+    the MACD line to its signal line.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and MACD indicators
+        
+    Returns:
+        str: Momentum signal indicating long, short, or no momentum
+    """
     if df['MACD'].iloc[-1] > df['MACD_Signal'].iloc[-1]:
         return "Momentum: Strong Upward (Long Position)"
     elif df['MACD'].iloc[-1] < df['MACD_Signal'].iloc[-1]:
@@ -166,6 +262,18 @@ def detect_momentum_signal(df):
 
 
 def detect_macd_signal(df):
+    """
+    Detect MACD crossover signals.
+    
+    This function identifies bullish or bearish MACD signals
+    based on the relationship between MACD and signal lines.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and MACD indicators
+        
+    Returns:
+        str: "Bullish MACD Signal", "Bearish MACD Signal", or "No Strong Trend"
+    """
     if df['MACD'].iloc[-1] > df['MACD_Signal'].iloc[-1]:
         return "Bullish MACD Signal"
     elif df['MACD'].iloc[-1] < df['MACD_Signal'].iloc[-1]:
@@ -174,6 +282,18 @@ def detect_macd_signal(df):
 
 
 def detect_pinbar_signal(df):
+    """
+    Detect pinbar (hammer) candlestick patterns.
+    
+    This function identifies pinbar patterns using the CDLHAMMER
+    function from the TA-Lib library.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with OHLC price data
+        
+    Returns:
+        str: "Pinbar Pattern Detected" or "No Pinbar Pattern"
+    """
     pinbar = ta.CDLHAMMER(df['Open'], df['High'], df['Low'], df['Close'])
     if pinbar.iloc[-1] != 0:
         return "Pinbar Pattern Detected"
@@ -181,6 +301,19 @@ def detect_pinbar_signal(df):
 
 
 def detect_spread_widening(bid_price, ask_price):
+    """
+    Detect if the bid-ask spread is unusually wide.
+    
+    This function compares the current spread to a threshold
+    to identify potential market stress or low liquidity.
+    
+    Args:
+        bid_price (float): Current bid price
+        ask_price (float): Current ask price
+        
+    Returns:
+        str: "Widened Spread Detected" if spread > 0.01, otherwise "Normal Spread"
+    """
     spread = ask_price - bid_price
     if spread > 0.01:
         return "Widened Spread Detected"
@@ -188,18 +321,55 @@ def detect_spread_widening(bid_price, ask_price):
 
 
 def detect_volatility_clustering(df):
+    """
+    Detect high volatility clustering periods.
+    
+    This function identifies periods of unusually high volatility
+    by comparing current ATR to its historical average.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data and ATR indicator
+        
+    Returns:
+        str: "High Volatility Cluster Detected" or "Normal Volatility"
+    """
     if df['ATR'].iloc[-1] > df['ATR'].rolling(20).mean().iloc[-1] * 2:
         return "High Volatility Cluster Detected"
     return "Normal Volatility"
 
 
 def detect_breakout(df):
+    """
+    Detect price breakouts above recent highs.
+    
+    This function identifies when the current high exceeds
+    the 20-period rolling maximum high.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data
+        
+    Returns:
+        str: "Breakout Detected" or "No Breakout"
+    """
     if df['High'].iloc[-1] > df['High'].rolling(20).max().iloc[-2]:
         return "Breakout Detected"
     return "No Breakout"
 
 
 def evaluate_market_condition(df, predicted_price):
+    """
+    Evaluate overall market condition and suggest strategy.
+    
+    This function compares the predicted price to the current close
+    to determine market direction and suggest appropriate trading strategy.
+    
+    Args:
+        df (pandas.DataFrame): DataFrame with price data
+        predicted_price (float): Predicted price for next period
+        
+    Returns:
+        tuple: (market_condition, recommended_strategy)
+    """
     if predicted_price is None:
         return "No Prediction", "Safe Default Strategy"
 
@@ -213,6 +383,19 @@ def evaluate_market_condition(df, predicted_price):
 
 
 def calculate_strategy_confidence(signals: dict, strategy: str) -> float:
+    """
+    Calculate confidence level for a trading strategy.
+    
+    This function evaluates how well the detected signals align
+    with the recommended strategy to calculate a confidence percentage.
+    
+    Args:
+        signals (dict): Dictionary containing various market signals
+        strategy (str): The recommended trading strategy
+        
+    Returns:
+        float: Confidence percentage (0-100)
+    """
     alignment_score = 0
     total_considered = 4
 
@@ -232,6 +415,18 @@ def calculate_strategy_confidence(signals: dict, strategy: str) -> float:
 
 
 def final_strategy_decision(all_signals):
+    """
+    Make final strategy decision based on weighted signal analysis.
+    
+    This function aggregates signals from all instruments and timeframes
+    to make a comprehensive strategy decision using weighted scoring.
+    
+    Args:
+        all_signals (list): List of signal lists from all analyses
+        
+    Returns:
+        str: Final recommended strategy
+    """
     signal_weights = {
         "Strong Trend": 3, "Weak Trend": 1,
         "Momentum: Strong Upward (Long Position)": 2,
@@ -265,6 +460,13 @@ def final_strategy_decision(all_signals):
 
 
 def main():
+    """
+    Main function for continuous market analysis with feature selection.
+    
+    This function runs an infinite loop that continuously analyzes
+    all configured instruments, performs feature selection for optimal
+    prediction, prints detailed results, and logs findings. It runs every 60 seconds.
+    """
     all_signals = []
 
     while True:
