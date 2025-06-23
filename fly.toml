@@ -45,6 +45,7 @@ PYTHONUNBUFFERED = "1"
 
 [processes]
   app = "python run.py"
+  worker = "celery -A app.celery worker --loglevel=info"
 
 [experimental]
   enable_consul = true
