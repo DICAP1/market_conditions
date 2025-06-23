@@ -163,9 +163,6 @@ config_local.py
 .env.local
 .env.production
 
-# Docker
-.dockerignore
-
 # Fly.io
 fly.toml
 
