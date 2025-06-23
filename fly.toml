@@ -1,0 +1,50 @@
+app = "market-condition"
+
+[build]
+
+[env]
+FLASK_APP = "run.py"
+FLASK_ENV = "production"
+PYTHONUNBUFFERED = "1"
+
+[[services]]
+  internal_port = 5000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.http_checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/health"
+    protocol = "http"
+    tls_skip_verify = false
+    restart_limit = 0
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
+    restart_limit = 0
+
+[deploy]
+  strategy = "immediate"
+
+[processes]
+  app = "python run.py"
+
+[experimental]
+  enable_consul = true
