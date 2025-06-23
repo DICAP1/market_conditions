@@ -48,8 +48,11 @@ def create_app():
     # (e.g., "http://yourfrontend.com", "http://localhost:3000").
     
     # Use environment variable for database URL (Fly.io provides DATABASE_URL)
-    database_url = "postgresql://pgdb-1zqyxr7zz10wp8mk:HwmyvNe6LwueJyWtQuejKy2b@pgbouncer.1zqyxr7zz10wp8mk.flympg.net/pgdb-1zqyxr7zz10wp8mk"
-    # database_url = os.environ.get("DATABASE_URL", "postgresql://postgres:admin@localhost/market-condition")
+    # database_url = "postgresql://pgdb-1zqyxr7zz10wp8mk:HwmyvNe6LwueJyWtQuejKy2b@pgbouncer.1zqyxr7zz10wp8mk.flympg.net/pgdb-1zqyxr7zz10wp8mk"
+    # for uat
+    database_url = "postgres://pgdb-1zqyxr77zerwp8mk:8226MiizzFaAr17LGvn7Uz5H@direct.1zqyxr77zerwp8mk.flympg.net/pgdb-1zqyxr77zerwp8mk?sslmode=require"
+    # for local
+    # database_url = "postgresql://postgres:admin@localhost/market-condition"
     # Fix for Fly.io PostgreSQL URL format
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
